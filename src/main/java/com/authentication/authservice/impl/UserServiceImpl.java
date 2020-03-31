@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 	@Override
 	public UserDto findById(long userId) {
-		User user = userRepository.findById(userId).orElseGet(() -> new User());
+		User user = userRepository.findById(userId).orElseGet(() -> new User());		
 		return userMapper.userToUserDto(user);
 	}
 	
@@ -57,6 +57,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		//TestData
+		//$2a$04$DTuuvJO9itvtWjPydyqQhueJ00uhnck19BFSxVEIWE/uThh4hwE5m
 		User user = userRepository.findByUserName(username).orElseGet(() -> new User());
 		if(user == null){
 			throw new UsernameNotFoundException("Invalid username or password.");
